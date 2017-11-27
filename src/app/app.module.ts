@@ -12,6 +12,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FixedPluginComponent } from './shared/fixedplugin/fixedplugin.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     NavbarComponent,
     FixedPluginComponent,
     SidebarComponent,
-    FixedPluginComponent
+    FixedPluginComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
