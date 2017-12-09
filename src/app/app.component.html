@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div *ngIf="isLogin; else elseBlock " class="wrapper" >
   <div class="sidebar" data-background-color="white" data-active-color="danger">
     <sidebar-cmp></sidebar-cmp>
   </div>
@@ -10,4 +10,4 @@
     <footer-cmp></footer-cmp>
   </div>
 </div>
-<fixedplugin-cmp></fixedplugin-cmp>
+<login-cmp #elseBlock></login-cmp>

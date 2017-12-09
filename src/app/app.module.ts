@@ -13,6 +13,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FixedPluginComponent } from './shared/fixedplugin/fixedplugin.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { LoginComponent } from './login/login.component';
+import { Auth } from './utils/Auth'
 
 
 @NgModule({

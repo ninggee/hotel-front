@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { NgIf } from '@angular/common';
+import { Auth } from './utils/Auth';
 declare var $: any;
 
 @Component({
@@ -8,4 +9,7 @@ declare var $: any;
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent { }
+export class AppComponent {
+  isLogin: boolean = Auth.isLogin;
+
+}
