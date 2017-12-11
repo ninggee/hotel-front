@@ -1,0 +1,93 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Room Table</h4>
+                    <p class="category">Here is Room Table</p>
+                </div>
+                <div class="content table-responsive table-full-width">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th *ngFor="let cell of tableData1.headerRow">{{ cell }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+<!--                            <tr *ngFor="let row of tableData1.dataRows">
+                              <td *ngFor="let cell of row">{{cell}}</td>
+                            </tr>-->
+                            <tr *ngFor="let room of rooms">
+                              <td>{{room.id}}</td>
+                              <td>{{room.room_number}}</td>
+                              <td>{{room.room_type}}</td>
+                              <td>{{room.price}}</td>
+                              <td>{{room.description}}</td>
+                              <td>{{room.is_ordered}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+            <div class="card card-plain">
+                <div class="header">
+                    <h4 class="title">Orders Table</h4>
+                    <p class="category">Here is Orders Table</p>
+                </div>
+                <div class="content table-responsive table-full-width">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th *ngFor="let cell of tableData2.headerRow">{{ cell }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           <!-- <tr *ngFor="let row of tableData2.dataRows">
+                                <td *ngFor="let cell of row">{{cell}}</td>
+                            </tr>-->
+                            <tr *ngFor="let order of orders">
+                              <td>{{order.id}}</td>
+                              <td>{{order.room_id}}</td>
+                              <td>{{order.visitor_id}}</td>
+                              <td>{{order.start_date}}</td>
+                              <td>{{order.end_date}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h4 class="title">Visitors Table</h4>
+            <p class="category">Here is Visitors Table</p>
+          </div>
+          <div class="content table-responsive table-full-width">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th *ngFor="let cell of tableData3.headerRow">{{ cell }}</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let visitor of visitors">
+                <td>{{visitor.id}}</td>
+                <td>{{visitor.gender}}</td>
+                <td>{{visitor.identityCard}}</td>
+              </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+</div>

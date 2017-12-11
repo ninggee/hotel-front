@@ -2,8 +2,9 @@ import { Routes } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
-
-
+import { TableComponent }   from './table/table.component';
+import { RoomsComponent }      from './room/room.component';
+import { IconsComponent }   from './icons/icons.component';
 
 export const AppRoutes: Routes = [
     {
@@ -19,5 +20,12 @@ export const AppRoutes: Routes = [
         path: 'login',
         component: LoginComponent
     },
-
+    {
+        path: 'table',
+        component: TableComponent
+    },
+    {
+      path: 'icons',
+      component: RoomsComponent
+    }
 ]
