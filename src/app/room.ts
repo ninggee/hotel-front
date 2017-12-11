@@ -1,4 +1,4 @@
-export class Hero {
+export class Room {
   id: number;
   room_number: number;
   room_type:string;

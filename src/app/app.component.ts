@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { Auth } from './utils/Auth';
-import {HeroService} from './hero.service';
+import {RoomService} from './room.service';
 declare var $: any;
 
 @Component({

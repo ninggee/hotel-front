@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Hero} from "../hero";
+import {Room} from "../room";
 import {Router} from "@angular/router";
-import {HeroService} from "../hero.service";
+import {RoomService} from "../room.service";
 
 declare interface TableData {
     headerRow: string[];
@@ -17,17 +17,17 @@ declare interface TableData {
 export class TableComponent implements OnInit{
     public tableData1: TableData;
     public tableData2: TableData;
-    heroes: Hero[];
-    selectedHero: Hero;
+    rooms: Room[];
+    selectedRoom: Room;
   constructor(
-    private heroService: HeroService,
+    private roomService: RoomService,
     private router: Router
   ) { }
-  getHeroes(): void {
-    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+  getRoomes(): void {
+    this.roomService.getRooms().then(rooms => this.rooms = rooms);
   }
     ngOnInit(){
-      this.getHeroes();
+      this.getRoomes();
         this.tableData1 = {
             headerRow: [ 'ID', 'Room Number', 'Room Type', 'Price', 'Description','IsOrdered'],
             dataRows: [

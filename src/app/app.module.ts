@@ -15,8 +15,8 @@ import { LoginComponent } from './login/login.component';
 import { Auth } from './utils/Auth'
 import { TableComponent }   from './table/table.component';
 import { IconsComponent }   from './icons/icons.component';
-import { HeroService }          from './hero.service';
-import {HeroesComponent} from './hero.component';
+import { RoomService }          from './room.service';
+import {RoomsComponent} from './room.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,7 @@ import {HeroesComponent} from './hero.component';
     FixedPluginComponent,
     LoginComponent,
     TableComponent,
-    HeroesComponent
+    RoomsComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +37,7 @@ import {HeroesComponent} from './hero.component';
     HttpModule,
     RouterModule.forRoot(AppRoutes),
   ],
-  providers: [HeroService],
+  providers: [RoomService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

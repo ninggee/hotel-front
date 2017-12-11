@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Hero } from './hero';
+import { Room } from './room';
 import {Headers, Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class HeroService {
+export class RoomService {
 
-  private heroesUrl = 'http://localhost:4567/room';
+  private roomsUrl = 'http://localhost:4567/room';
 
   constructor(private http: Http) { }
 
-  getHeroes(): Promise<Hero[]> {
+  getRooms(): Promise<Room[]> {
 
-    return this.http.get(this.heroesUrl).toPromise().then(response => response.json().result as Hero[]).catch(this.handleError);
+    return this.http.get(this.roomsUrl).toPromise().then(response => response.json().result as Room[]).catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
@@ -20,10 +20,10 @@ export class HeroService {
     return Promise.reject(error.message || error);
   }
 
-  getHeroesSlowly(): Promise<Hero[]> {
+  getRoomesSlowly(): Promise<Room[]> {
     return new Promise(resolve => {
       // Simulate server latency with 2 second delay
-      setTimeout(() => resolve(this.getHeroes()), 2000);
+      setTimeout(() => resolve(this.getRooms()), 2000);
     });
   }
 /*

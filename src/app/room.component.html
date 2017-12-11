@@ -1,0 +1,14 @@
+<h2>My Heroes</h2>
+<ul class="heroes">
+  <li *ngFor="let room of rooms"
+      [class.selected]="room === selectedRoom"
+      (click)="onSelect(room)">
+    <span class="badge">{{room.id}}</span> {{room.room_number}}
+  </li>
+</ul>
+<div *ngIf="selectedRoom">
+  <h2>
+    {{selectedRoom.room_number | uppercase}} is my hero
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>
