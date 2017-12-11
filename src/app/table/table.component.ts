@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Room} from "../room";
+import {Room} from "../room/room";
 import {Router} from "@angular/router";
-import {RoomService} from "../room.service";
+import {RoomService} from "../room/room.service";
 
 declare interface TableData {
     headerRow: string[];

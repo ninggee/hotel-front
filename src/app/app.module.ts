@@ -15,8 +15,8 @@ import { LoginComponent } from './login/login.component';
 import { Auth } from './utils/Auth'
 import { TableComponent }   from './table/table.component';
 import { IconsComponent }   from './icons/icons.component';
-import { RoomService }          from './room.service';
-import {RoomsComponent} from './room.component';
+import { RoomService }          from './room/room.service';
+import {RoomsComponent} from './room/room.component';
 
 @NgModule({
   declarations: [
