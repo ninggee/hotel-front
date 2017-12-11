@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app.route';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 import { AppComponent } from './app.component';
@@ -31,7 +33,9 @@ import { Auth } from './utils/Auth'
     BrowserModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
     RouterModule.forRoot(AppRoutes),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

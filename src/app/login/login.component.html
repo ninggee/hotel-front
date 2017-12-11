@@ -1,15 +1,17 @@
 <div class="twt-container twt-row" style="padding-top:150px">
     <div class="twt-card twt-col-md-6 twt-offset-md-3" >
         <div class="twt-card-block">
-          <form id="loginForm" action="/login?redirect=<?=urlencode($_GET['redirect'])?>" method="post">
-            <input name="token" type="hidden" value="<?=TOKEN?>">
+          <form [formGroup]="loginForm"  (ngSubmit)="onSubmit(loginForm)">
             <legend>登录</legend>
-            <fieldset class="twt-form-group twt-form-icon">
-                <input class="form-control twt-form-control-material" name="username" value="" type="text" placeholder="用户名" required>
+            <div *ngIf="errorMessage.length > 0">
+              <p style="color:red;">{{errorMessage}}</p>
+            </div>
+            <fieldset class="twt-form-group twt-form-icon" >
+                <input class="form-control twt-form-control-material"  name="username"  type="text" placeholder="用户名" [formControl]="loginForm.controls['username']" required>
                 <i class="twt-icon twt-icon-person"></i>
             </fieldset>
             <fieldset class="twt-form-group twt-form-icon">
-                <input class="form-control twt-form-control-material" name="password" value="" type="password" placeholder="密码" required>
+                <input class="form-control twt-form-control-material" name="password" value="" type="password" placeholder="密码" required  [formControl]="loginForm.controls['password']" required>
                 <i class="twt-icon twt-icon-lock"></i>
             </fieldset>
             <button class="twt-offset-md-2 btn btn-primary btn-fill btn-wd" type="submit">提交</button>
