@@ -5,7 +5,6 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app.route';
 
-
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -14,7 +13,10 @@ import { FixedPluginComponent } from './shared/fixedplugin/fixedplugin.component
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { LoginComponent } from './login/login.component';
 import { Auth } from './utils/Auth'
-
+import { TableComponent }   from './table/table.component';
+import { IconsComponent }   from './icons/icons.component';
+import { HeroService }          from './hero.service';
+import {HeroesComponent} from './hero.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { Auth } from './utils/Auth'
     FixedPluginComponent,
     SidebarComponent,
     FixedPluginComponent,
-    LoginComponent
+    LoginComponent,
+    TableComponent,
+    HeroesComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,7 @@ import { Auth } from './utils/Auth'
     HttpModule,
     RouterModule.forRoot(AppRoutes),
   ],
-  providers: [],
+  providers: [HeroService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
