@@ -2,6 +2,9 @@ import { Component, OnInit, Renderer, ViewChild, ElementRef } from '@angular/cor
 import { ROUTES } from '../../sidebar/sidebar.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { Auth } from '../../utils/Auth';
+
+declare var $: any;
 
 @Component({
     moduleId: module.id,
@@ -54,5 +57,29 @@ export class NavbarComponent implements OnInit{
             this.sidebarVisible = false;
             body.classList.remove('nav-open');
         }
+    }
+
+    logout() {
+      Auth.clear();
+      this.showNotification('top', 'center', "注销成功");
+      window.location.reload();
+    }
+
+    showNotification(from, align, message){
+      let type = ['','info','success','warning','danger'];
+
+      let color = Math.floor((Math.random() * 4) + 1);
+
+      $.notify({
+          icon: "ti-gift",
+          message: message
+        },{
+            type: 'success',
+            timer: 4000,
+            placement: {
+                from: from,
+                align: align
+            }
+        });
     }
 }

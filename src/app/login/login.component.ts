@@ -3,8 +3,11 @@ import { FormGroup, FormBuilder, ReactiveFormsModule, Validators, AbstractContro
 import { HttpClient } from '@angular/common/http';
 import { URLSearchParams } from '@angular/http/src/url_search_params';
 import { RequestOptions } from '@angular/http/src/base_request_options';
+import { Auth } from '../utils/Auth';
+import { Router } from '@angular/router';
 
 declare var $: any;
+const SERVER_URL = 'http://121.193.130.195:4567';
 
 @Component({
   selector: 'login-cmp',
@@ -18,15 +21,13 @@ export class LoginComponent implements OnInit {
 
   errorMessage: string;
 
-  constructor(fb: FormBuilder, private http: HttpClient) {
+  constructor(fb: FormBuilder, private http: HttpClient, private router: Router) {
    this.loginForm = fb.group({
      'username': ['', Validators.required],
      'password': ['', Validators.required]
    });
 
-   console.log(this.http)
-
-   this.errorMessage = "";
+   this.errorMessage = '';
   }
 
   ngOnInit() {
@@ -40,7 +41,7 @@ export class LoginComponent implements OnInit {
     if(username !== '' && password !== '') {
 
       this.http.post(
-        'http://localhost:4567/user/login',
+        SERVER_URL + '/user/login',
         JSON.stringify({
           username: username,
           password: password
@@ -49,7 +50,14 @@ export class LoginComponent implements OnInit {
            let status = res['status']
            if(status) {
              this.showNotification('top', 'center');
+             // read user info from infomation from server
+             let userInfo = res['result']
+             // set Auth info
+             Auth.setAuth(userInfo.uid, userInfo.username, userInfo.isAdmin);
 
+             console.log(Auth.getAuth());
+
+             setTimeout(() => window.location.reload(), 1000);
            } else {
              this.errorMessage = res['message'];
            }
@@ -57,15 +65,13 @@ export class LoginComponent implements OnInit {
     } else {
       this.errorMessage = '输入不完整';
     }
-
-
   }
 
 
   showNotification(from, align){
-    var type = ['','info','success','warning','danger'];
+    let type = ['','info','success','warning','danger'];
 
-    var color = Math.floor((Math.random() * 4) + 1);
+    let color = Math.floor((Math.random() * 4) + 1);
 
     $.notify({
         icon: "ti-gift",
