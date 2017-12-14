@@ -1,4 +1,4 @@
-<h2>My Heroes</h2>
+<!--<h2>My Heroes</h2>
 <div>
   <label>Room name:</label> <input #roomName />
   <button (click)="add(roomName.value); roomName.value=''">
@@ -19,4 +19,24 @@
     {{selectedRoom.room_type | uppercase}} is my hero
   </h2>
   <button (click)="gotoDetail()">View Details</button>
+</div>-->
+
+<div *ngIf="room">
+  <h2>{{room.room_number}} details!</h2>
+  <div>
+    <label>id: </label>{{room.id}}</div>
+  <div>
+    <label>room_number: </label>
+    <input [(ngModel)]="room.room_number" placeholder="name" />
+    <label>room_type: </label>
+    <input [(ngModel)]="room.room_type" placeholder="name" />
+    <label>price: </label>
+    <input [(ngModel)]="room.price" placeholder="name" />
+    <label>description: </label>
+    <input [(ngModel)]="room.description" placeholder="name" />
+    <label>is_ordered: </label>
+    <input [(ngModel)]="room.is_ordered" placeholder="name" />
+  </div>
+  <button (click)="goBack()">Back</button>
+  <button (click)="save()">Save</button>
 </div>

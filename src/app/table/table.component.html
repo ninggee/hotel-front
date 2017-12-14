@@ -19,8 +19,12 @@
                               <td>{{room.price}}</td>
                               <td>{{room.description}}</td>
                               <td>{{room.is_ordered ? '是' : '否'}}</td>
-                              <td>  
-                                <button (click)="goBack()" class="btn btn-success btn-fill">修改</button>
+                              <td>
+                                <a [routerLink]="['/detail', room.id]">
+                                  <button (click)="goBack()" class="btn btn-success btn-fill">
+                                    修改
+                                  </button>
+                                </a>
                                 <button class="btn btn-danger btn-fill">删除</button>
                               </td>
                             </tr>
@@ -37,7 +41,7 @@
                 </div>
                 <div class="content">
                     <room-detail></room-detail>
-                </div>      
+                </div>
             </div>
         </div>
 
