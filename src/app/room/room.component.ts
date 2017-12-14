@@ -12,6 +12,8 @@ export class RoomsComponent implements OnInit {
   title = 'Tour of Heroes';
   rooms: Room[];
   selectedRoom: Room;
+  room: Room;
+
 
   constructor(
     private roomService: RoomService,
@@ -28,6 +30,25 @@ export class RoomsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRooms();
+  }
+
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.roomService.create(name)
+      .then(room => {
+        this.rooms.push(room);
+        this.selectedRoom = null;
+      });
+  }
+
+  delete(room: Room): void {
+    this.roomService
+      .delete(room.id)
+      .then(() => {
+        this.rooms = this.rooms.filter(h => h !== room);
+        if (this.selectedRoom === room) { this.selectedRoom = null; }
+      });
   }
 
 /*  gotoDetail(): void {

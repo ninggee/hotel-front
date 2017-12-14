@@ -24,7 +24,15 @@
                               <td>{{room.price}}</td>
                               <td>{{room.description}}</td>
                               <td>{{room.is_ordered}}</td>
+                              <td>  <button (click)="goBack()">Back</button>
+                                <a href="http://localhost:4567/room/1"><button>Change</button></a></td>
                             </tr>
+                        <tr>
+                          <td><label>Room name:</label> <input #roomId />
+                            <button (click)="add(roomId.value); roomId.value=''">
+                              Add
+                            </button></td>
+                        </tr>
                         </tbody>
                     </table>
 

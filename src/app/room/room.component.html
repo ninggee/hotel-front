@@ -1,14 +1,22 @@
 <h2>My Heroes</h2>
+<div>
+  <label>Room name:</label> <input #roomName />
+  <button (click)="add(roomName.value); roomName.value=''">
+    Add
+  </button>
+</div>
 <ul class="heroes">
-  <li *ngFor="let room of rooms"
-      [class.selected]="room === selectedRoom"
-      (click)="onSelect(room)">
-    <span class="badge">{{room.id}}</span> {{room.room_number}}
+  <li *ngFor="let room of rooms" (click)="onSelect(room)"
+      [class.selected]="room === selectedRoom">
+    <span class="badge">{{room.id}}</span>
+    <span>{{room.room_type}}</span>
+    <button class="delete"
+            (click)="delete(room); $event.stopPropagation()">Delete</button>
   </li>
 </ul>
 <div *ngIf="selectedRoom">
   <h2>
-    {{selectedRoom.room_number | uppercase}} is my hero
+    {{selectedRoom.room_type | uppercase}} is my hero
   </h2>
   <button (click)="gotoDetail()">View Details</button>
 </div>

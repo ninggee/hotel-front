@@ -24,6 +24,7 @@ export class TableComponent implements OnInit{
     public tableData3: TableData;
     rooms: Room[];
     selectedRoom: Room;
+    room: Room;
 
     orders: Order[];
     selsecedOrder: Order;
@@ -52,9 +53,9 @@ export class TableComponent implements OnInit{
       this.getOrders();
       this.getVisitors();
         this.tableData1 = {
-            headerRow: [ 'ID', 'Room Number', 'Room Type', 'Price', 'Description','IsOrdered'],
+            headerRow: [ 'ID', 'Room Number', 'Room Type', 'Price', 'Description', 'IsOrdered', 'Operation'],
             dataRows: [
-                ['1', 'Dakota Rice', 'Niger', 'Oud-Turnhout', '$36,738','yes'],
+                ['1', 'Dakota Rice', 'Niger', 'Oud-Turnhout', '$36,738','yes',"eas"],
                 ['2', 'Minerva Hooper', 'Curaçao', 'Sinaai-Waas', '$23,789','no'],
                 ['3', 'Sage Rodriguez', 'Netherlands', 'Baileux', '$56,142'],
                 ['4', 'Philip Chaney', 'Korea, South', 'Overland Park', '$38,735'],
@@ -85,4 +86,17 @@ export class TableComponent implements OnInit{
         ]
       };
     }
+
+  change(): void {
+    this.roomService.update(this.room);
+  }
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.roomService.create(name)
+      .then(room => {
+        this.rooms.push(room);
+        this.selectedRoom = null;
+      });
+  }
 }

@@ -21,7 +21,7 @@ import {OrderService }          from './order/order.service';
 import {OrdersComponent} from './order/order.component';
 import {VisitorService }          from './visitor/visitor.service';
 import {VisitorsComponent} from './visitor/visitor.component';
-
+import {RoomDetailComponent} from './room/room-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +35,8 @@ import {VisitorsComponent} from './visitor/visitor.component';
     TableComponent,
     RoomsComponent,
     OrdersComponent,
-    VisitorsComponent
+    VisitorsComponent,
+    RoomDetailComponent
   ],
   imports: [
     BrowserModule,
