@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12" *ngIf="edit_room ==false; else editRoom">
             <div class="card">
                 <div class="header">
                     <h4 class="title">房间列表</h4>
@@ -19,9 +19,9 @@
                               <td>{{room.price}}</td>
                               <td>{{room.description}}</td>
                               <td>{{room.is_ordered ? '是' : '否'}}</td>
-                              <td>  
-                                <button (click)="goBack()" class="btn btn-success btn-fill">修改</button>
-                                <button class="btn btn-danger btn-fill">删除</button>
+                              <td>
+                                <button (click)="editRoomFunc(room.id)" class="btn btn-success btn-fill">修改</button>
+                                <button (click)="deleteRoom(room.id)" class="btn btn-danger btn-fill">删除</button>
                               </td>
                             </tr>
                         </tbody>
@@ -30,16 +30,19 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="card">
-                <div class="header">
-                    <h4 class="title">编辑房间</h4>
+
+        <ng-template #editRoom>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">编辑房间</h4>
+                    </div>
+                    <div class="content">
+                        <room-detail [room_id]="room_id" [onFinish]="onEditRoomFinished"></room-detail>
+                    </div>
                 </div>
-                <div class="content">
-                    <room-detail></room-detail>
-                </div>      
             </div>
-        </div>
+        </ng-template>
 
 
         <div class="col-md-12">
@@ -100,3 +103,5 @@
 
     </div>
 </div>
+
+

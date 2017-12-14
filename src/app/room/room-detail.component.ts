@@ -1,5 +1,5 @@
 import 'rxjs/add/operator/switchMap';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -13,6 +13,9 @@ import { RoomService } from './room.service';
 })
 export class RoomDetailComponent implements OnInit {
   room: Room;
+  @Input() room_id: number;
+
+  @Input() onFinish: any;
 
   constructor(
     private roomService: RoomService,
@@ -21,17 +24,27 @@ export class RoomDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    this.room = new Room();
+    this.room.room_number = 1;
+    this.room.description = '';
+    this.room.price = 1;
+    this.room.room_type = '';
+
+
     this.route.paramMap
-      .switchMap((params: ParamMap) => this.roomService.getRoom(+params.get('id')))
-      .subscribe(room => this.room = room);
+      .switchMap((params: ParamMap) => this.roomService.getRoom(this.room_id))
+      .subscribe(room => {this.room = room;});
   }
 
   save(): void {
     this.roomService.update(this.room)
-      .then(() => this.goBack());
+      .then(() => this.onFinish())
+      .catch(() => this.onFinish());
   }
 
   goBack(): void {
     this.location.back();
   }
+
 }

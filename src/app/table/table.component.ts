@@ -6,6 +6,7 @@ import {Order} from "../order/order";
 import {OrderService} from "../order/order.service";
 import {Visitor} from "../visitor/visitor";
 import {VisitorService} from "../visitor/visitor.service";
+import { showDialog } from '../utils/Helpers';
 
 declare interface TableData {
     headerRow: string[];
@@ -32,12 +33,18 @@ export class TableComponent implements OnInit{
     visitors: Visitor[];
     selectVisitor: Visitor;
 
+    room_id: number;
+    edit_room = false;
+    onEditRoomFinished: Function;
+
   constructor(
     private roomService: RoomService,
     private router: Router,
     private orderService: OrderService,
     private  visitorService: VisitorService
-  ) { }
+  ) {
+    this.onEditRoomFinished = this.onEditRoomFinish.bind(this);
+  }
   getRoomes(): void {
     this.roomService.getRooms().then(rooms => this.rooms = rooms);
   }
@@ -92,5 +99,23 @@ export class TableComponent implements OnInit{
         this.rooms.push(room);
         this.selectedRoom = null;
       });
+  }
+
+
+  editRoomFunc(id: number) {
+    this.edit_room = true;
+    this.room_id = id;
+
+    console.log(this.room_id);
+  }
+
+  onEditRoomFinish() {
+    this.room_id = 0;
+    this.edit_room = false;
+    showDialog('top', 'center', 'success', '修改成功', 1000);
+  }
+   // delete a room
+  deleteRoom(id: number) {
+    showDialog('top', 'center', 'warning', "删除一个房间", 1000);
   }
 }

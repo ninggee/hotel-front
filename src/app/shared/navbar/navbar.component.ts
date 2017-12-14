@@ -3,6 +3,7 @@ import { ROUTES } from '../../sidebar/sidebar.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Auth } from '../../utils/Auth';
+import { showDialog } from 'app/utils/Helpers';
 
 declare var $: any;
 
@@ -29,7 +30,6 @@ export class NavbarComponent implements OnInit{
 
     ngOnInit(){
         this.listTitles = ROUTES.filter(listTitle => listTitle);
-        console.log(this.listTitles);
         var navbar : HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
     }
