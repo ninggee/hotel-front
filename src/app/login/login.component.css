@@ -7,3 +7,7 @@ input {
 body {
  background-color: #f4f3ef !important;
 }
+
+p {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Pingfang-SC,"Microsoft Yahei",SimHei,Arial,sans-serif !important;
+}

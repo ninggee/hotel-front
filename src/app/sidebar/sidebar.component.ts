@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import * as $ from "jquery";
-// declare var $:any;
+
+declare var $:any;
 
 export interface RouteInfo {
     path: string;
