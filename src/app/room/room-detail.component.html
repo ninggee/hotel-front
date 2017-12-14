@@ -1,11 +1,39 @@
-<div *ngIf="hero">
-  <h2>{{room.room_type}} details!</h2>
-  <div>
-    <label>id: </label>{{room.id}}</div>
-  <div>
-    <label>name: </label>
-    <input [(ngModel)]="room.room_type" placeholder="name" />
-   </div>
-  <button (click)="goBack()">Back</button>
-  <button (click)="save()">Save</button>
+
+<div class="content">
+  <form>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>编号</label>
+          <input type="text" class="form-control border-input" placeholder="Company" value="Creative Code Inc.">
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>类型</label>
+          <input type="text" class="form-control border-input" placeholder="Username" value="michael23">
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="exampleInputEmail1">价格</label>
+          <input type="text" class="form-control border-input" placeholder="Email">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>介绍</label>
+          <textarea rows="5" class="form-control border-input" placeholder="Here can be your description" value="Mike">
+          </textarea>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-info btn-fill btn-wd">Update Profile</button>
+    </div>
+    <div class="clearfix"></div>
+  </form>
 </div>

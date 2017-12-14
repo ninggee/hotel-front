@@ -3,8 +3,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="header">
-                    <h4 class="title">Room Table</h4>
-                    <p class="category">Here is Room Table</p>
+                    <h4 class="title">房间列表</h4>
                 </div>
                 <div class="content table-responsive table-full-width">
                     <table class="table table-striped">
@@ -14,29 +13,31 @@
                             </tr>
                         </thead>
                         <tbody>
-<!--                            <tr *ngFor="let row of tableData1.dataRows">
-                              <td *ngFor="let cell of row">{{cell}}</td>
-                            </tr>-->
                             <tr *ngFor="let room of rooms">
-                              <td>{{room.id}}</td>
                               <td>{{room.room_number}}</td>
                               <td>{{room.room_type}}</td>
                               <td>{{room.price}}</td>
                               <td>{{room.description}}</td>
-                              <td>{{room.is_ordered}}</td>
-                              <td>  <button (click)="goBack()">Back</button>
-                                <a href="http://localhost:4567/room/1"><button>Change</button></a></td>
+                              <td>{{room.is_ordered ? '是' : '否'}}</td>
+                              <td>  
+                                <button (click)="goBack()" class="btn btn-success btn-fill">修改</button>
+                                <button class="btn btn-danger btn-fill">删除</button>
+                              </td>
                             </tr>
-                        <tr>
-                          <td><label>Room name:</label> <input #roomId />
-                            <button (click)="add(roomId.value); roomId.value=''">
-                              Add
-                            </button></td>
-                        </tr>
                         </tbody>
                     </table>
 
                 </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">编辑房间</h4>
+                </div>
+                <div class="content">
+                    <room-detail></room-detail>
+                </div>      
             </div>
         </div>
 

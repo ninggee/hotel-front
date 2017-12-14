@@ -29,6 +29,7 @@ export class NavbarComponent implements OnInit{
 
     ngOnInit(){
         this.listTitles = ROUTES.filter(listTitle => listTitle);
+        console.log(this.listTitles);
         var navbar : HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
     }
@@ -58,6 +59,7 @@ export class NavbarComponent implements OnInit{
             body.classList.remove('nav-open');
         }
     }
+
 
     logout() {
       Auth.clear();

@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class RoomService {
 
-  private roomsUrl = 'http://localhost:4567/room';
+  private roomsUrl = 'http://121.193.130.195:4567/room';
 
   constructor(private http: Http) { }
 

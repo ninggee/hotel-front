@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
     let password = form.value.password;
 
     if(username !== '' && password !== '') {
-
       this.http.post(
         SERVER_URL + '/user/login',
         JSON.stringify({
@@ -54,8 +53,6 @@ export class LoginComponent implements OnInit {
              let userInfo = res['result']
              // set Auth info
              Auth.setAuth(userInfo.uid, userInfo.username, userInfo.isAdmin);
-
-             console.log(Auth.getAuth());
 
              setTimeout(() => window.location.reload(), 1000);
            } else {
