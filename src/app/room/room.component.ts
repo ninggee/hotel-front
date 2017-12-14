@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Room} from './room';
 import {RoomService} from './room.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router, ParamMap} from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-heroes',
@@ -17,7 +18,9 @@ export class RoomsComponent implements OnInit {
 
   constructor(
     private roomService: RoomService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+    private location: Location
   ) { }
 
   getRooms(): void {
@@ -30,6 +33,9 @@ export class RoomsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRooms();
+    this.route.paramMap
+      .switchMap((params: ParamMap) => this.roomService.getRoom(+params.get('id')))
+      .subscribe(room => this.room = room);
   }
 
   add(name: string): void {
@@ -50,6 +56,16 @@ export class RoomsComponent implements OnInit {
         if (this.selectedRoom === room) { this.selectedRoom = null; }
       });
   }
+
+    goBack(): void {
+       this.location.back();
+    }
+
+  save(): void {
+
+    this.roomService.update(this.room)
+      .then(() => this.goBack());
+    }
 
 /*  gotoDetail(): void {
     this.router.navigate(['/detail', this.selectedHero.id]);

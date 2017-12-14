@@ -31,7 +31,7 @@ export const AppRoutes: Routes = [
     },
     {
       path: 'detail/:id',
-      component: RoomDetailComponent
+      component: RoomsComponent
     }
 
 ]
