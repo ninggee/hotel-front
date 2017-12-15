@@ -3,12 +3,14 @@ import { Order } from './order';
 import {Headers, Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
+
 @Injectable()
 export class OrderService {
 
-  private roomsUrl = 'http://121.193.130.195:4567/reservation';
+  private roomsUrl = 'http://localhost:4567/reservation';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+  }
 
   getOrders(): Promise<Order[]> {
 
@@ -25,6 +27,29 @@ export class OrderService {
       // Simulate server latency with 2 second delay
       setTimeout(() => resolve(this.getOrders()), 2000);
     });
+  }
+
+  delete(id: number): Promise<void> {
+    const url = `${this.roomsUrl}/${id}`;
+    // return this.http.delete(url, {headers: this.headers})
+    return this.http.delete(url)
+      .toPromise()
+      .then(() => null)
+      .catch(this.handleError);
+  }
+
+  getRoom(id: number): Promise<Order> {
+    return this.getOrders().then(orders => orders.find(order => order.id === id));
+  }
+
+  update(order: Order): Promise<Order> {
+    const url = `${this.roomsUrl}/${order.id}`;
+    return this.http
+      // .put(url, JSON.stringify(hero), {headers: this.headers})
+      .put(url, JSON.stringify(order))
+      .toPromise()
+      .then(() => order)
+      .catch(this.handleError);
   }
 /*
   getHero(id: number): Promise<Hero> {

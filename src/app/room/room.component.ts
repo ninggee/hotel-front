@@ -37,17 +37,6 @@ export class RoomsComponent implements OnInit {
       .switchMap((params: ParamMap) => this.roomService.getRoom(+params.get('id')))
       .subscribe(room => this.room = room);
   }
-
-  add(name: string): void {
-    name = name.trim();
-    if (!name) { return; }
-    this.roomService.create(name)
-      .then(room => {
-        this.rooms.push(room);
-        this.selectedRoom = null;
-      });
-  }
-
   delete(room: Room): void {
     this.roomService
       .delete(room.id)

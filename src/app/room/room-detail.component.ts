@@ -26,21 +26,27 @@ export class RoomDetailComponent implements OnInit {
   ngOnInit(): void {
 
     this.room = new Room();
-    this.room.room_number = 1;
+    this.room.room_number = 0;
     this.room.description = '';
-    this.room.price = 1;
+    this.room.price = 0;
     this.room.room_type = '';
 
-
-    this.route.paramMap
-      .switchMap((params: ParamMap) => this.roomService.getRoom(this.room_id))
-      .subscribe(room => {this.room = room;});
+    if (this.room_id !== 0)  {
+      this.route.paramMap
+        .switchMap((params: ParamMap) => this.roomService.getRoom(this.room_id))
+        .subscribe(room => {this.room = room;});
+    }
   }
 
   save(): void {
-    this.roomService.update(this.room)
+    if (this.room_id !== 0) {
+      this.roomService.update(this.room)
       .then(() => this.onFinish())
       .catch(() => this.onFinish());
+    } else {
+      this.roomService.create(this.room).then(() => this.onFinish());
+    }
+
   }
 
   goBack(): void {

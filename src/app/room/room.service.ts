@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Room } from './room';
-import {Headers, Http} from '@angular/http';
+import { RequestOptions, Headers, Http } from '@angular/http';
+import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class RoomService {
 
-  private roomsUrl = 'http://121.193.130.195:4567/room';
-
-  constructor(private http: Http) { }
+  private roomsUrl = 'http://localhost:4567/room';
+  private headers = new Headers({'Content-Type': 'application/json'});
+  constructor(private http: Http, private httpClient:HttpClient) { }
 
   getRooms(): Promise<Room[]> {
 
@@ -35,12 +36,12 @@ export class RoomService {
       .then(() => room)
       .catch(this.handleError);
   }
-  create(name: string): Promise<Room> {
+  create(room: Room): Promise<Room> {
     return this.http
       // .post(this.roomsUrl, JSON.stringify({name: name}), {headers: this.headers})
-      .post( 'http://localhost:4567/insert', JSON.stringify({room_type: name}))
+      .post( this.roomsUrl + '/insert', JSON.stringify(room))
       .toPromise()
-      .then(res => res.json().data.result as Room)
+      .then(res => res.json().result as Room)
       .catch(this.handleError);
   }
 

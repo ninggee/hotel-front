@@ -6,6 +6,9 @@ import { TableComponent } from './table/table.component';
 import { RoomsComponent } from './room/room.component';
 import { IconsComponent } from './icons/icons.component';
 import { RoomDetailComponent } from './room/room-detail.component';
+import { OrdersComponent } from './order/order.component';
+import { VisitorsComponent } from 'app/visitor/visitor.component';
+import { UserComponent } from './user/user.component';
 
 export const AppRoutes: Routes = [
     {
@@ -26,12 +29,20 @@ export const AppRoutes: Routes = [
         component: TableComponent
     },
     {
-      path: 'icons',
-      component: RoomsComponent
+      path: 'room',
+      component: TableComponent
     },
     {
-      path: 'detail/:id',
-      component: RoomsComponent
+      path: 'order',
+      component: OrdersComponent
+    },
+    {
+      path: 'visitor',
+      component: VisitorsComponent
+    },
+    {
+      path: 'user',
+      component: UserComponent
     }
 
 ]

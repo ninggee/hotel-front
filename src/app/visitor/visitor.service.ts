@@ -7,6 +7,7 @@ import 'rxjs/add/operator/toPromise';
 export class VisitorService {
 
   private visitorsUrl = 'http://121.193.130.195:4567/visitor';
+  
 
   constructor(private http: Http) { }
 

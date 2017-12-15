@@ -1,0 +1,49 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12" *ngIf="isEdit ==false; else editRoom">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title col-md-11">用户列表</h4>
+                </div>
+                <div class="content table-responsive table-full-width">
+                    <table class="table table-striped" id="user_table">
+                        <thead>
+                            <tr>
+                                <th *ngFor="let cell of tableData.headerRow">{{ cell }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of users">
+                              <td>{{user.id}}</td>
+                              <td>{{user.name}}</td>
+                              <td>{{user.is_admin ? '是' : '否'}}</td>
+                              <td>{{user.add_time | date:'yyyy-MM-dd HH:mm'}}</td>
+                              <td>
+                                <button (click)="editUser(user.id)" class="btn btn-success btn-fill">修改</button>
+                                <button (click)="deleteUser(user.id)" class="btn btn-danger btn-fill">删除</button>
+                              </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <ng-template #editRoom>
+            <!-- <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">{{room_id === 0 ? '添加房间' : '修改房间'}}</h4>
+                    </div>
+                    <div class="content">
+                        <room-detail [room_id]="room_id" [onFinish]="onEditRoomFinished"></room-detail>
+                    </div>
+                </div>
+            </div> -->
+        </ng-template>
+
+    </div>
+</div>
+
+

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import {Room} from "../room/room";
 import {Router} from "@angular/router";
 import {RoomService} from "../room/room.service";
@@ -13,13 +13,15 @@ declare interface TableData {
     dataRows: string[][];
 }
 
+declare var $: any;
+
 @Component({
     selector: 'table-cmp',
     moduleId: module.id,
     templateUrl: 'table.component.html'
 })
 
-export class TableComponent implements OnInit{
+export class TableComponent implements OnInit, OnChanges{
     public tableData1: TableData;
     public tableData2: TableData;
     public tableData3: TableData;
@@ -65,7 +67,7 @@ export class TableComponent implements OnInit{
             ]
         };
         this.tableData2 = {
-            headerRow: [ 'ID', 'room_id',  'visitor id', 'start date', 'end date' ],
+            headerRow: [ '编号', '房间编号',  '订房者编号', '开始时间', '结束时间' ],
             dataRows: [
                 ['1', 'Dakota Rice','$36,738', 'Niger', 'Oud-Turnhout' ],
                 ['2', 'Minerva Hooper', '$23,789', 'Curaçao', 'Sinaai-Waas'],
@@ -76,7 +78,7 @@ export class TableComponent implements OnInit{
             ]
         };
       this.tableData3 = {
-        headerRow: [ 'ID', 'gender',  'identity card'],
+        headerRow: [ '编号', '年龄',  '身份证号'],
         dataRows: [
           ['1', 'Dakota Rice','$36,738', 'Niger', 'Oud-Turnhout' ],
           ['2', 'Minerva Hooper', '$23,789', 'Curaçao', 'Sinaai-Waas'],
@@ -86,36 +88,48 @@ export class TableComponent implements OnInit{
           ['6', 'Mason Porter', '$78,615', 'Chile', 'Gloucester' ]
         ]
       };
-    }
-
-  change(): void {
-    this.roomService.update(this.room);
-  }
-  add(name: string): void {
-    name = name.trim();
-    if (!name) { return; }
-    this.roomService.create(name)
-      .then(room => {
-        this.rooms.push(room);
-        this.selectedRoom = null;
-      });
+    $.extend( $.fn.dataTable.defaults, {
+        searching: false,
+        ordering:  false
+    } );
+    this.renderTables();
   }
 
+  ngOnChanges() {
+
+
+  }
 
   editRoomFunc(id: number) {
     this.edit_room = true;
     this.room_id = id;
-
-    console.log(this.room_id);
   }
 
   onEditRoomFinish() {
+    let message = '';
+    if (this.room_id === 0) {
+      message = '添加成功';
+    } else {
+      message = '修改成功';    }
     this.room_id = 0;
     this.edit_room = false;
-    showDialog('top', 'center', 'success', '修改成功', 1000);
+    showDialog('top', 'center', 'success', message, 1000);
+    this.ngOnInit();
+    // this.renderTables();
   }
    // delete a room
   deleteRoom(id: number) {
-    showDialog('top', 'center', 'warning', "删除一个房间", 1000);
+    this.roomService.delete(id).then(() => {
+      showDialog('top', 'center', 'success', '删除成功', 1000);
+      this.ngOnInit();
+    });
+  }
+
+
+  renderTables() {
+    $(document).ready(() => {
+      $('#table_id').DataTable();
+      $('#order_table').DataTable();
+    });
   }
 }

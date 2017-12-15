@@ -1,14 +1,81 @@
-<h2>My Heroes</h2>
-<ul class="heroes">
-  <li *ngFor="let room of rooms"
-      [class.selected]="room === selectedRoom"
-      (click)="onSelect(room)">
-    <span class="badge">{{room.id}}</span> {{room.room_number}}
-  </li>
-</ul>
-<div *ngIf="selectedRoom">
-  <h2>
-    {{selectedRoom.room_number | uppercase}} is my hero
-  </h2>
-  <button (click)="gotoDetail()">View Details</button>
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card" *ngIf="isEdit == false; else edit">
+                <div class="header">
+                    <h4 class="title">订单列表</h4>
+                </div>
+                <div class="content table-responsive table-full-width">
+                    <table class="table table-striped" id="order_table">
+                        <thead>
+                            <tr>
+                                <th *ngFor="let cell of tableData2.headerRow">{{ cell }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let order of orders">
+                              <td>{{order.id}}</td>
+                              <td>{{order.room_id}}</td>
+                              <td>{{order.visitor_id}}</td>
+                              <td>{{order.start_date}}</td>
+                              <td>{{order.end_date}}</td>
+                              <td>
+                                  <button (click)="editFunc(order.id)" class="btn btn-success btn-fill">修改</button>
+                                  <button (click)="delete(order.id)" class="btn btn-danger btn-fill">删除</button>
+                              </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <ng-template #edit>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">{{order_id === 0 ? '添加房间' : '修改订单'}}</h4>
+                    </div>
+                    <div class="content">
+                        <form (submit)="save()">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>房间编号</label>
+                                <input type="text" class="form-control border-input" placeholder="房间编号：比如201" [(ngModel)]="order_edited.room_id" name="number">
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>订房者编号</label>
+                                <input type="text" class="form-control border-input" placeholder="订房者编号" name="type" [(ngModel)]="order_edited.visitor_id">
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label for="exampleInputEmail1">开始时间</label>
+                                <input type="text" class="form-control border-input" placeholder="开始时间" datetime="yyyy-MM-dd HH:mm:ss"  [(ngModel)]="order_edited.start_date" name="price">
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">结束时间</label>
+                                  <input type="text" class="form-control border-input" placeholder="结束时间" datetime="yyyy-MM-dd HH:mm:ss"  [(ngModel)]="order_edited.end_date" name="price">
+                                </div>
+                              </div>
+                          </div>
+                          <div class="text-center">
+                            <button type="submit" class="btn btn-info btn-fill btn-wd">提交</button>
+                          </div>
+                          <div class="clearfix"></div>
+                        </form>
+                      </div>
+
+                    </div>
+                </div>
+        </ng-template>
+
+    </div>
 </div>
+
+
