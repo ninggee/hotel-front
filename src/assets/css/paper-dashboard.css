@@ -586,13 +586,13 @@ hr {
 
 .btn,
 .navbar .navbar-nav > li > a.btn {
-  border-radius: 15px;
+  border-radius: 17px;
   box-sizing: border-box;
   border-width: 2px;
   background-color: transparent;
   font-size: 14px;
   font-weight: 500;
-  padding: 2px 10px;
+  padding: 5px 15px;
   border-color: #66615B;
   color: #66615B;
   -webkit-transition: all 150ms linear;

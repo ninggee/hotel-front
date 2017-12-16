@@ -1,9 +1,10 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12" *ngIf="isEdit ==false; else editRoom">
+        <div class="col-md-12" *ngIf="isEdit ==false; else editUserForm">
             <div class="card">
                 <div class="header">
                     <h4 class="title col-md-11">用户列表</h4>
+                    <button *ngIf="isAdmin" (click)="editUser(0)" class="btn btn-warning btn-fill">添加用户</button>
                 </div>
                 <div class="content table-responsive table-full-width">
                     <table class="table table-striped" id="user_table">
@@ -30,17 +31,46 @@
             </div>
         </div>
 
-        <ng-template #editRoom>
-            <!-- <div class="col-md-12">
+        <ng-template #editUserForm>
+            <div class="col-md-12">
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">{{room_id === 0 ? '添加房间' : '修改房间'}}</h4>
+                        <h4 class="title">{{user_id === 0 ? '添加用户' : '修改用户'}}</h4>
                     </div>
                     <div class="content">
-                        <room-detail [room_id]="room_id" [onFinish]="onEditRoomFinished"></room-detail>
+                        <form (submit)="save()">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>用户名</label>
+                                <input type="text" class="form-control border-input" placeholder="用户姓名" [(ngModel)]="user.name" name="name">
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>密码</label>
+                                <input type="text" class="form-control border-input" placeholder="用户密码，如果不设置，将不修改原密码" name="type" [(ngModel)]="user.password">
+                              </div>
+                            </div>
+                            <div class="col-md-12" *ngIf="isAdmin">
+                              <div class="form-group">
+                                <label for="exampleInputEmail1">是否为管理员</label>
+                                <select class="form-control border-input" name="is_admin" [(ngModel)]="user.is_admin">
+                                  <option value=true [selected]=user.is_admin>是</option>
+                                  <option value=false [selected]=!user.is_admin>否</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="text-center">
+                            <button type="submit" class="btn btn-info btn-fill btn-wd">提交</button>
+                          </div>
+                          <div class="clearfix"></div>
+                        </form>
+                      </div>
+
                     </div>
                 </div>
-            </div> -->
         </ng-template>
 
     </div>

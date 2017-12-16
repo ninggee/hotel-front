@@ -3,4 +3,5 @@ export class User {
   name: string;
   is_admin: boolean;
   add_time: Date;
+  password: string;
 }

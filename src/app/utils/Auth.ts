@@ -46,4 +46,9 @@ export class Auth {
     localStorage.clear();
   }
 
+  static get(key: string): any {
+    const auth = Auth.getAuth();
+    return auth[key];
+  }
+
 }
