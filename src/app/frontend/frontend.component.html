@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-      <div class="col-md-12" >
+      <div class="col-md-12" *ngIf="isEdit == false; else editRoom">
           <div class="card">
               <div class="header">
                   <h4 class="title col-md-12">订房</h4>
@@ -19,7 +19,7 @@
                             <td>{{room.price}}</td>
                             <td>{{room.description}}</td>
                             <td>
-                              <button (click)="editRoomFunc(room.id)" class="btn btn-success btn-fill">预定</button>
+                              <button (click)="order(room.id)" class="btn btn-success btn-fill">预定</button>
                             </td>
                           </tr>
                       </tbody>

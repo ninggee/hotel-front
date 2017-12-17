@@ -22,7 +22,7 @@ export class FrontendComponent implements OnInit {
   selectedRoom: Room;
   room: Room;
   room_id: number;
-  edit_room = false;
+  isEdit = false;
   onEditRoomFinished: Function;
 
 constructor(
@@ -49,13 +49,8 @@ getRoomes(): void {
   this.renderTables();
 }
 
-ngOnChanges() {
-
-
-}
-
-editRoomFunc(id: number) {
-  this.edit_room = true;
+order(id: number) {
+  this.isEdit = true;
   this.room_id = id;
 }
 
@@ -66,7 +61,7 @@ onEditRoomFinish() {
   } else {
     message = '修改成功';    }
   this.room_id = 0;
-  this.edit_room = false;
+  this.isEdit = false;
   showDialog('top', 'center', 'success', message, 1000);
   this.ngOnInit();
   // this.renderTables();
