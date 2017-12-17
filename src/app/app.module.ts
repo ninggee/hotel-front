@@ -24,6 +24,7 @@ import {VisitorService } from './visitor/visitor.service';
 import {VisitorsComponent} from './visitor/visitor.component';
 import {RoomDetailComponent} from './room/room-detail.component';
 import { UserComponent } from './user/user.component';
+import { FrontendComponent } from './frontend/frontend.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { UserComponent } from './user/user.component';
     OrdersComponent,
     VisitorsComponent,
     RoomDetailComponent,
-    UserComponent
+    UserComponent,
+    FrontendComponent
   ],
   imports: [
     BrowserModule,

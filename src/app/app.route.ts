@@ -17,31 +17,31 @@ export const AppRoutes: Routes = [
         pathMatch: 'full',
     },
     {
-        path: 'dashboard',
+        path: 'admin/dashboard',
         component: DashboardComponent
     },
     {
-        path: 'login',
+        path: 'admin/login',
         component: LoginComponent
     },
     {
-        path: 'table',
+        path: 'admin/table',
         component: TableComponent
     },
     {
-      path: 'room',
+      path: 'admin/room',
       component: TableComponent
     },
     {
-      path: 'order',
+      path: 'admin/order',
       component: OrdersComponent
     },
     {
-      path: 'visitor',
+      path: 'admin/visitor',
       component: VisitorsComponent
     },
     {
-      path: 'user',
+      path: 'admin/user',
       component: UserComponent
     }
 

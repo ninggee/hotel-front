@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-12" >
+          <div class="card">
+              <div class="header">
+                  <h4 class="title col-md-12">订房</h4>
+              </div>
+              <div class="content table-responsive table-full-width">
+                  <table class="table table-hover" id="table_id">
+                      <thead>
+                          <tr>
+                              <th *ngFor="let cell of tableData1.headerRow">{{ cell }}</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let room of rooms">
+                            <td>{{room.room_number}}</td>
+                            <td>{{room.room_type}}</td>
+                            <td>{{room.price}}</td>
+                            <td>{{room.description}}</td>
+                            <td>
+                              <button (click)="editRoomFunc(room.id)" class="btn btn-success btn-fill">预定</button>
+                            </td>
+                          </tr>
+                      </tbody>
+                  </table>
+
+              </div>
+          </div>
+      </div>
+
+      <ng-template #editRoom>
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="header">
+                      <h4 class="title">{{room_id === 0 ? '添加房间' : '修改房间'}}</h4>
+                  </div>
+                  <div class="content">
+                      <room-detail [room_id]="room_id" [onFinish]="onEditRoomFinished"></room-detail>
+                  </div>
+              </div>
+          </div>
+      </ng-template>
+  </div>
+</div>
+
+

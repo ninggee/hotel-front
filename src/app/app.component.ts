@@ -12,10 +12,12 @@ declare var $: any;
 
 export class AppComponent implements OnInit {
   isLogin: boolean; // store user login info
+  isAdmin: boolean;
 
   ngOnInit() {
     let auth = Auth.getAuth();
     this.isLogin = auth.isLogin;
+    this.isAdmin = window.location.href.indexOf('admin') > 0;
   }
 
 }

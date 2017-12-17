@@ -1,16 +1,21 @@
-<div *ngIf="isLogin; else elseBlock " class="wrapper" >
-  <div class="sidebar" data-background-color="white" data-active-color="danger">
-    <sidebar-cmp></sidebar-cmp>
-  </div>
-  <div class="main-panel">
-    <navbar-cmp></navbar-cmp>
-    <div class="content">
-      <router-outlet></router-outlet>
-    </div>
-    <footer-cmp></footer-cmp>
-  </div>
+<div *ngIf="isAdmin == false; else admin" class="wrapper">
+  <app-frontend></app-frontend>
 </div>
-<ng-template #elseBlock>
-    <login-cmp ></login-cmp>
+<ng-template #admin>
+  <div *ngIf="isLogin; else elseBlock " class="wrapper" >
+    <div class="sidebar" data-background-color="white" data-active-color="danger">
+      <sidebar-cmp></sidebar-cmp>
+    </div>
+    <div class="main-panel">
+      <navbar-cmp></navbar-cmp>
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+      <footer-cmp></footer-cmp>
+    </div>
+  </div>
+  <ng-template #elseBlock>
+      <login-cmp ></login-cmp>
+  </ng-template>
 </ng-template>
 
