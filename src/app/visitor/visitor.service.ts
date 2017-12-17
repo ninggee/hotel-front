@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 import { Visitor } from './visitor';
 import {Headers, Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-
+import { Response } from '../utils/Response';
 @Injectable()
 export class VisitorService {
 
   private visitorsUrl = 'http://121.193.130.195:4567/visitor';
-  
 
   constructor(private http: Http) { }
 
@@ -27,8 +26,8 @@ export class VisitorService {
       setTimeout(() => resolve(this.getVisitors()), 2000);
     });
   }
-/*
-  getHero(id: number): Promise<Hero> {
-    return this.getHeroes().then(heroes => heroes.find(hero => hero.id === id));
-  }*/
+  delete(id: number): Promise<Response> {
+    const url = `${this.visitorsUrl}/${id}`;
+    return this.http.delete(url).toPromise().then(res => res.json() as Response).catch(this.handleError);
+  }
 }

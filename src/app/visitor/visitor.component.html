@@ -1,14 +1,27 @@
-<h2>My Heroes</h2>
-<ul class="heroes">
-  <li *ngFor="let room of rooms"
-      [class.selected]="room === selectedRoom"
-      (click)="onSelect(room)">
-    <span class="badge">{{room.id}}</span> {{room.room_number}}
-  </li>
-</ul>
-<div *ngIf="selectedRoom">
-  <h2>
-    {{selectedRoom.room_number | uppercase}} is my hero
-  </h2>
-  <button (click)="gotoDetail()">View Details</button>
+<div class="col-md-12">
+  <div class="card">
+    <div class="header">
+      <h4 class="title">订房者列表</h4>
+    </div>
+    <div class="content table-responsive table-full-width">
+      <table class="table table-striped" id="visitor_table">
+        <thead>
+        <tr>
+          <th *ngFor="let cell of tableData.headerRow">{{ cell }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let visitor of visitors">
+          <td>{{visitor.id}}</td>
+          <td>{{visitor.gender}}</td>
+          <td>{{visitor.identityCard}}</td>
+          <td>
+            <button class="btn btn-danger btn-fill" (click)="delete(visitor.id)">删除</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
 </div>

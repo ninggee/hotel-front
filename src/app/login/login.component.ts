@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
              // read user info from infomation from server
              let userInfo = res['result']
              // set Auth info
-             Auth.setAuth(userInfo.uid, userInfo.username, userInfo.isAdmin);
+             Auth.setAuth(userInfo.uid, userInfo.name, userInfo.isAdmin);
 
              setTimeout(() => window.location.reload(), 1000);
            } else {

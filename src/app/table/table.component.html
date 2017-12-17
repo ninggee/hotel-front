@@ -44,32 +44,6 @@
                 </div>
             </div>
         </ng-template>
-
-      <div class="col-md-12">
-        <div class="card">
-          <div class="header">
-            <h4 class="title">订房者列表</h4>
-          </div>
-          <div class="content table-responsive table-full-width">
-            <table class="table table-striped">
-              <thead>
-              <tr>
-                <th *ngFor="let cell of tableData3.headerRow">{{ cell }}</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let visitor of visitors">
-                <td>{{visitor.id}}</td>
-                <td>{{visitor.gender}}</td>
-                <td>{{visitor.identityCard}}</td>
-              </tr>
-              </tbody>
-            </table>
-
-          </div>
-        </div>
-      </div>
-
     </div>
 </div>
 
