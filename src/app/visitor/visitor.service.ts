@@ -33,6 +33,19 @@ export class VisitorService {
     return this.http.delete(url).toPromise().then(res => res.json() as Response).catch(this.handleError);
   }
 
+  getBidentity_card(identity_card: string): Promise<Visitor> {
+    console.log(123);
+    console.log(identity_card);
+    /*return this.getVisitors().then(visitors => {
+      console.log(visitors);
+      return visitors.find(visitor => visitor.identity_card === identity_card);
+    }).catch(this.handleError);
+    }
+*/
+    return this.http.get(this.visitorsUrl + '/identity_card/' + identity_card).
+    toPromise().then(response => response.json().result as Visitor).catch(this.handleError);
+  }
+
   create(visitor: Visitor): Promise<Visitor> {
     return this.http
     // .post(this.roomsUrl, JSON.stringify({name: name}), {headers: this.headers})
@@ -43,6 +56,16 @@ export class VisitorService {
         console.log(res.json());
         return res.json().result as Visitor;
       })*/
+      .catch(this.handleError);
+  }
+
+  update(visitor: Visitor): Promise<Visitor> {
+    const url = `${this.visitorsUrl}/${visitor.id}`;
+    return this.http
+    // .put(url, JSON.stringify(hero), {headers: this.headers})
+      .put(url, JSON.stringify(visitor))
+      .toPromise()
+      .then(() => visitor)
       .catch(this.handleError);
   }
 }

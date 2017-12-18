@@ -20,6 +20,7 @@ export class VisitorDetailComponent implements OnInit {
   room: Room;
   order: Order;
   visitor_edited: Visitor;
+  visitor_query: Visitor;
   @Input() room_id: number;
 
   @Input() onFinish: any;
@@ -43,7 +44,7 @@ export class VisitorDetailComponent implements OnInit {
     // visitor
     this.visitor = new Visitor();
     this.visitor.gender = '12';
-    this.visitor.identity_card =  '1111111111111';
+    this.visitor.identity_card =  '3213123123123123';
     // order
     this.order = new Order();
     this.order.start_date = '2017-12-12 00:00:00';
@@ -64,28 +65,45 @@ export class VisitorDetailComponent implements OnInit {
     this.room.is_ordered = true;
     // if (this.room_id !== 0) {
       this.roomService.update(this.room)
-        .then(() => this.onFinish())
+        .then(() => {
+          // this.onFinish();
+          this.visitorService.getBidentity_card(this.visitor.identity_card).then((visitor) => {
+            // 查询有没有这个visitor
+            this.visitor_query = visitor;
+            console.log(this.visitor_query);
+            if (this.visitor_query.id > 0){// 已有访客
+              // 添加order数据，不对visitor数据处理
+              this.order.room_id = this.room.room_number;
+              this.order.visitor_id = this.visitor_query.id;
+              console.log(this.order.end_date);
+              this.orderService.create(this.order).then(() => this.onFinish());
+            }else {// 没有访客
+              // 添加visitor数据
+              this.visitorService.create(this.visitor).then((visitor) =>
+              {
+                this.visitor_edited = visitor;
+                // 添加order数据
+                this.order.room_id = this.room.room_number;
+                this.order.visitor_id = this.visitor_edited.id;
+                this.orderService.create(this.order).then(() => this.onFinish());
+                // console.log(this.visitor_edited.id)
+                /*  if (this.order.start_date.indexOf('T') > 0) {
+                    this.order.start_date = this.order.start_date.replace('T', ' ');
+                    date = new Date(this.order.start_date)
+                  }
+                  if (this.order.end_date.indexOf('T') > 0) {
+                    this.order.end_date = this.order.end_date.replace('T', ' ');
+                  }*/
+                // this.orderService.create(this.order).then(() => this.onFinish());
+              });
+            }
+          }) ;
+
+        })
         .catch(() => this.onFinish());
 /*    } else {
       this.roomService.create(this.room).then(() => this.onFinish());
     }*/
-    // 添加visitor数据
-    this.visitorService.create(this.visitor).then((visitor) =>
-    {
-      this.visitor_edited = visitor;
-      // 添加order数据
-      this.order.room_id = this.room.room_number;
-      this.order.visitor_id = this.visitor_edited.id;
-      // console.log(this.visitor_edited.id)
-    /*  if (this.order.start_date.indexOf('T') > 0) {
-        this.order.start_date = this.order.start_date.replace('T', ' ');
-        date = new Date(this.order.start_date)
-      }
-      if (this.order.end_date.indexOf('T') > 0) {
-        this.order.end_date = this.order.end_date.replace('T', ' ');
-      }*/
-      this.orderService.create(this.order).then(() => this.onFinish());
-    });
   }
 
   // goBack(): void {
