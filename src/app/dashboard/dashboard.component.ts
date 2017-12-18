@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
     this.orderService.getOrderNumber().then(res => {
       if (res.status) {
 
-        this.order_number = parseInt(res.result, 10)
+        this.order_number = parseInt(res.result, 10);
       }
     });
 

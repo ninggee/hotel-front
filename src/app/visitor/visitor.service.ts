@@ -3,6 +3,7 @@ import { Visitor } from './visitor';
 import {Headers, Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Response } from '../utils/Response';
+import {Room} from '../room/room';
 @Injectable()
 export class VisitorService {
 
@@ -35,5 +36,27 @@ export class VisitorService {
     const url = `${this.visitorsUrl}/statistics/number`;
 
     return this.http.get(url).toPromise().then(res => res.json() as Response).catch(this.handleError);
+  }
+
+  getBidentity_card(identity_card: string): Promise<Visitor> {
+    return this.http.get(this.visitorsUrl + '/identity_card/' + identity_card).
+    toPromise().then(response => response.json().result as Visitor).catch(this.handleError);
+  }
+
+  create(visitor: Visitor): Promise<Visitor> {
+    return this.http
+      .post( this.visitorsUrl + '/insert', JSON.stringify(visitor))
+      .toPromise()
+      .then(res => res.json().result as Visitor)
+      .catch(this.handleError);
+  }
+
+  update(visitor: Visitor): Promise<Visitor> {
+    const url = `${this.visitorsUrl}/${visitor.id}`;
+    return this.http
+      .put(url, JSON.stringify(visitor))
+      .toPromise()
+      .then(() => visitor)
+      .catch(this.handleError);
   }
 }

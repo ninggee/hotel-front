@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Order } from './order';
 import {Headers, Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { Response } from '../utils/Response'
+import { Response } from '../utils/Response';
+import {Room} from '../room/room';
 
 
 @Injectable()
@@ -57,4 +58,16 @@ export class OrderService {
     const url = `${this.roomsUrl}/number`;
     return this.http.get(url).toPromise().then(res => res.json() as Response).catch(this.handleError);
   }
+  create(order: Order): Promise<Order> {
+    return this.http
+    // .post(this.roomsUrl, JSON.stringify({name: name}), {headers: this.headers})
+      .post( this.roomsUrl + '/insert', JSON.stringify(order))
+      .toPromise()
+      .then(res => res.json().result as Order)
+      .catch(this.handleError);
+  }
+/*
+  getHero(id: number): Promise<Hero> {
+    return this.getHeroes().then(heroes => heroes.find(hero => hero.id === id));
+  }*/
 }

@@ -25,6 +25,7 @@ import {VisitorsComponent} from './visitor/visitor.component';
 import {RoomDetailComponent} from './room/room-detail.component';
 import { UserComponent } from './user/user.component';
 import { FrontendComponent } from './frontend/frontend.component';
+import {VisitorDetailComponent} from './visitor/visitor-detail.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { FrontendComponent } from './frontend/frontend.component';
     VisitorsComponent,
     RoomDetailComponent,
     UserComponent,
-    FrontendComponent
+    FrontendComponent,
+    VisitorDetailComponent
   ],
   imports: [
     BrowserModule,

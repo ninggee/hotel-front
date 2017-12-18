@@ -31,12 +31,12 @@ constructor(
 ) {
   this.onEditRoomFinished = this.onEditRoomFinish.bind(this);
 }
-getRoomes(): void {
-  this.roomService.getRooms().then(rooms => this.rooms = rooms);
+  getRoomsOrder(): void {
+  this.roomService.getRoomsOrder().then(rooms => this.rooms = rooms);
 }
 
   ngOnInit(){
-    this.getRoomes();
+    this.getRoomsOrder();
       this.tableData1 = {
           headerRow: ['房间号', '房间类型', '价格', '介绍', '操作'],
           dataRows: [

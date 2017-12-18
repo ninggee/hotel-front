@@ -33,10 +33,11 @@
           <div class="col-md-12">
               <div class="card">
                   <div class="header">
-                      <h4 class="title">{{room_id === 0 ? '添加房间' : '修改房间'}}</h4>
+                      <h4 class="title">订房</h4>
                   </div>
                   <div class="content">
-                      <room-detail [room_id]="room_id" [onFinish]="onEditRoomFinished"></room-detail>
+                      <!--<room-detail [room_id]="room_id" [onFinish]="onEditRoomFinished"></room-detail>-->
+                    <visitor-detail [room_id]="room_id" [onFinish]="onEditRoomFinished"></visitor-detail>
                   </div>
               </div>
           </div>
