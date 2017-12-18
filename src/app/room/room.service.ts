@@ -8,6 +8,7 @@ import 'rxjs/add/operator/toPromise';
 export class RoomService {
 
   private roomsUrl = 'http://localhost:4567/room';
+  private orderUrl = 'http://localhost:4567/room/order';
   private headers = new Headers({'Content-Type': 'application/json'});
   constructor(private http: Http, private httpClient:HttpClient) { }
 
@@ -15,6 +16,12 @@ export class RoomService {
 
     return this.http.get(this.roomsUrl).toPromise().then(response => response.json().result as Room[]).catch(this.handleError);
   }
+
+  getRoomsOrder(): Promise<Room[]> {
+
+    return this.http.get(this.orderUrl).toPromise().then(response => response.json().result as Room[]).catch(this.handleError);
+  }
+
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
