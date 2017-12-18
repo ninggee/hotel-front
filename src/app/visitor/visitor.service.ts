@@ -6,7 +6,7 @@ import { Response } from '../utils/Response';
 @Injectable()
 export class VisitorService {
 
-  private visitorsUrl = 'http://121.193.130.195:4567/visitor';
+  private visitorsUrl = 'http://localhost:4567/visitor';
 
   constructor(private http: Http) { }
 
@@ -29,5 +29,11 @@ export class VisitorService {
   delete(id: number): Promise<Response> {
     const url = `${this.visitorsUrl}/${id}`;
     return this.http.delete(url).toPromise().then(res => res.json() as Response).catch(this.handleError);
+  }
+
+  getVisitorNumber(): Promise<Response> {
+    const url = `${this.visitorsUrl}/statistics/number`;
+
+    return this.http.get(url).toPromise().then(res => res.json() as Response).catch(this.handleError);
   }
 }

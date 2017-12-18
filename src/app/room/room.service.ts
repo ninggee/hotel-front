@@ -3,6 +3,7 @@ import { Room } from './room';
 import { RequestOptions, Headers, Http } from '@angular/http';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
+import { Response } from 'app/utils/Response';
 
 @Injectable()
 export class RoomService {
@@ -56,5 +57,10 @@ export class RoomService {
 
   getRoom(id: number): Promise<Room> {
     return this.getRooms().then(rooms => rooms.find(room => room.id === id));
+  }
+
+  getRemain(): Promise<Response> {
+    const url = `${this.roomsUrl}/order/number`;
+    return this.http.get(url).toPromise().then(res => res.json() as Response).catch(this.handleError);
   }
 }
