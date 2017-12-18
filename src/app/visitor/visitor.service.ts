@@ -7,7 +7,8 @@ import {Room} from '../room/room';
 @Injectable()
 export class VisitorService {
 
-  private visitorsUrl = 'http://121.193.130.195:4567/visitor';
+  // private visitorsUrl = 'http://121.193.130.195:4567/visitor';
+  private visitorsUrl = 'http://localhost:4567/visitor';
 
   constructor(private http: Http) { }
 
@@ -38,6 +39,10 @@ export class VisitorService {
       .post( this.visitorsUrl + '/insert', JSON.stringify(visitor))
       .toPromise()
       .then(res => res.json().result as Visitor)
+      /*.then(function (res) {
+        console.log(res.json());
+        return res.json().result as Visitor;
+      })*/
       .catch(this.handleError);
   }
 }

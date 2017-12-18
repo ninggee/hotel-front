@@ -1,5 +1,5 @@
 export class Visitor {
   id: number;
   gender: string;
-  identityCard: string;
+  identity_card: string;
 }

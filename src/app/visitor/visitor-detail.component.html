@@ -18,7 +18,7 @@
       <div class="col-md-12">
         <div class="form-group">
           <label>身份证号</label>
-          <input type="text" class="form-control border-input" placeholder="身份证号" [(ngModel)]="visitor.identityCard" name="identityCard">
+          <input type="text" class="form-control border-input" placeholder="身份证号" [(ngModel)]="visitor.identity_card" name="identityCard">
         </div>
       </div>
     </div>
@@ -27,7 +27,7 @@
       <div class="col-md-12">
         <div class="form-group">
           <label>开始时间</label>
-          <input type="text" class="form-control border-input" placeholder="开始时间：yyyy-MM-dd HH:mm:ss"[(ngModel)]="order.start_date" name="start_date">
+          <input type="text" class="form-control border-input"datetime="yyyy-MM-dd HH:mm:ss" placeholder="开始时间：yyyy-MM-dd HH:mm:ss"[(ngModel)]="order.start_date" name="start_date">
           <!--<textarea rows="5" class="form-control border-input" placeholder="房间简介" [(ngModel)]="room.description" name="description">
           </textarea>-->
         </div>
@@ -38,7 +38,7 @@
       <div class="col-md-12">
         <div class="form-group">
           <label>结束时间</label>
-          <input type="text" class="form-control border-input" placeholder="结束时间：yyyy-MM-dd HH:mm:ss" [(ngModel)]="order.end_date" name="end_date">
+          <input type="text" class="form-control border-input" datetime="yyyy-MM-dd HH:mm:ss" placeholder="结束时间：yyyy-MM-dd HH:mm:ss" [(ngModel)]="order.end_date" name="end_date">
           <!--<textarea rows="5" class="form-control border-input" placeholder="房间简介" [(ngModel)]="room.description" name="description">
           </textarea>-->
         </div>

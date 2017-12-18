@@ -20,7 +20,6 @@ export class VisitorDetailComponent implements OnInit {
   room: Room;
   order: Order;
   visitor_edited: Visitor;
-  order_edited: Order;
   @Input() room_id: number;
 
   @Input() onFinish: any;
@@ -44,7 +43,7 @@ export class VisitorDetailComponent implements OnInit {
     // visitor
     this.visitor = new Visitor();
     this.visitor.gender = '12';
-    this.visitor.identityCard =  '32123123123409854398';
+    this.visitor.identity_card =  '1111111111111';
     // order
     this.order = new Order();
     this.order.start_date = '2017-12-12 00:00:00';
@@ -63,18 +62,30 @@ export class VisitorDetailComponent implements OnInit {
   save(): void {
     // 修改房间的order属性
     this.room.is_ordered = true;
-    if (this.room_id !== 0) {
+    // if (this.room_id !== 0) {
       this.roomService.update(this.room)
         .then(() => this.onFinish())
         .catch(() => this.onFinish());
-    } else {
+/*    } else {
       this.roomService.create(this.room).then(() => this.onFinish());
-    }
-   /* // 添加visitor数据
-    this.visitorService.create(this.visitor).then(() => this.onFinish());
-    // 添加order数据
-    this.orderService.create(this.order).then(() => this.onFinish());*/
-
+    }*/
+    // 添加visitor数据
+    this.visitorService.create(this.visitor).then((visitor) =>
+    {
+      this.visitor_edited = visitor;
+      // 添加order数据
+      this.order.room_id = this.room.room_number;
+      this.order.visitor_id = this.visitor_edited.id;
+      // console.log(this.visitor_edited.id)
+    /*  if (this.order.start_date.indexOf('T') > 0) {
+        this.order.start_date = this.order.start_date.replace('T', ' ');
+        date = new Date(this.order.start_date)
+      }
+      if (this.order.end_date.indexOf('T') > 0) {
+        this.order.end_date = this.order.end_date.replace('T', ' ');
+      }*/
+      this.orderService.create(this.order).then(() => this.onFinish());
+    });
   }
 
   // goBack(): void {
