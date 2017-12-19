@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
-import { RoomService} from '../room/room.service';
+import { RoomService } from '../room/room.service';
 import { OrderService } from '../order/order.service';
 import { VisitorService } from '../visitor/visitor.service';
 
@@ -55,9 +55,11 @@ export class DashboardComponent implements OnInit {
       }
     });
 
+
+
     const optionsSales = {
       low: 0,
-      high: 1000,
+      high: 20,
       showArea: false,
       height: "290px",
       axisX: {
@@ -80,7 +82,15 @@ export class DashboardComponent implements OnInit {
       }]
     ];
 
-    Chartist.Line('#chartHours', dataSales, optionsSales, responsiveSales);
+    this.RoomService.getStatistics().then(res => {
+      if (res.status) {
+        dataSales.labels = res.result.week;
+        dataSales.series = [res.result.data];
+        optionsSales.high = res.result.total;
+
+        Chartist.Line('#chartHours', dataSales, optionsSales, responsiveSales);
+      }
+    });
 
   }
 }

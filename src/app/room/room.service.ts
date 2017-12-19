@@ -70,4 +70,10 @@ export class RoomService {
     const url = `${this.roomsUrl}/order/number`;
     return this.http.get(url).toPromise().then(res => res.json() as Response).catch(this.handleError);
   }
+
+  getStatistics(): Promise<Response> {
+    let url = this.roomsUrl.substring(0, this.roomsUrl.length - 5);
+    url = `${url}/statistics/week_data`;
+    return this.http.get(url).toPromise().then(res => res.json() as Response).catch(this.handleError);
+  }
 }
