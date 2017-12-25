@@ -7,7 +7,7 @@ import { Auth } from '../utils/Auth';
 import { Router } from '@angular/router';
 
 declare var $: any;
-const SERVER_URL = 'http://121.193.130.195:4567';
+const SERVER_URL = 'http://localhost:4567';
 
 @Component({
   selector: 'login-cmp',

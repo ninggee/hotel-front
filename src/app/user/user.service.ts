@@ -28,7 +28,7 @@ export class UserService {
   }
 
   update(user: User): Promise<Response> {
-    const url = `${this.userUrl}/${user.id}`;
+    const url = `${this.userUrl}/update/${user.id}`;
     return this.http.post(url, JSON.stringify(user)).toPromise().then(
       res => res.json() as Response
     ).catch(this.handleError);
