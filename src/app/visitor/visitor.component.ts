@@ -55,6 +55,7 @@ export class VisitorsComponent implements OnInit {
   }
 
   renderTable() {
+    console.log(this.visitors)
     $(document).ready(() => {
       $('#visitor_table').DataTable();
     });
